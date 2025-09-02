@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://bq851xpliq627"]
+
+[ext_resource type="Script" uid="uid://cbyojhf8ty57h" path="res://player/shoulderSurf/SS_camrig.gd" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://be2ds0iowrels" path="res://player/shoulderSurf/SS_char_controller.gd" id="1_rkbax"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sh265"]
+radial_segments = 12
+rings = 2
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4flbx"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_onrkg"]
+
+[node name="PLAYER" type="Node3D"]
+
+[node name="SHOULDER_SURF" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="char-controller" type="CharacterBody3D" parent="SHOULDER_SURF"]
+script = ExtResource("1_rkbax")
+
+[node name="phys-coll" type="CollisionShape3D" parent="SHOULDER_SURF/char-controller"]
+shape = SubResource("CapsuleShape3D_sh265")
+
+[node name="MODEL" type="Node3D" parent="SHOULDER_SURF/char-controller"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SHOULDER_SURF/char-controller/MODEL"]
+mesh = SubResource("CapsuleMesh_sh265")
+
+[node name="CAMRIG" type="Node3D" parent="SHOULDER_SURF"]
+script = ExtResource("1_oul6g")
+
+[node name="cam3d" type="Camera3D" parent="SHOULDER_SURF/CAMRIG"]
+transform = Transform3D(-4.37114e-08, 0.284015, -0.95882, 0, 0.95882, 0.284015, 1, 1.24147e-08, -4.19114e-08, -3.111, 2.572, 0)
+
+[node name="FIRST_PERSON" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="char-controller" type="CharacterBody3D" parent="FIRST_PERSON"]
+
+[node name="phys-coll" type="CollisionShape3D" parent="FIRST_PERSON/char-controller"]
+shape = SubResource("CapsuleShape3D_4flbx")
+
+[node name="TOP_DOWN" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="char-controller" type="CharacterBody3D" parent="TOP_DOWN"]
+
+[node name="phys-coll" type="CollisionShape3D" parent="TOP_DOWN/char-controller"]
+shape = SubResource("CylinderShape3D_onrkg")

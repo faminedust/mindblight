@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0n3c35bur5x1"]
+
+[ext_resource type="Material" uid="uid://dvtgwhhnm08d" path="res://materials/checkered.tres" id="1_t6ah2"]
+
+[sub_resource type="HeightMapShape3D" id="HeightMapShape3D_gynrd"]
+map_width = 4
+map_depth = 4
+map_data = PackedFloat32Array(0.215, 0.44, 0.15, 0.245, 0.34, 0.025, 0.21, 0.17, 0.285, 0.235, 0.115, 0.125, -0.005, 0.275, 0.25, 0.36)
+
+[node name="MAP" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+directional_shadow_split_1 = 0.007
+directional_shadow_split_2 = 0.077
+directional_shadow_blend_splits = true
+
+[node name="BLOCKING" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, 0.5)
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="BLOCKING"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, -0.5)
+size = Vector3(16, 1, 16)
+material = ExtResource("1_t6ah2")
+
+[node name="MESH_TEST" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0708026, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MESH_TEST"]
+shape = SubResource("HeightMapShape3D_gynrd")
+debug_color = Color(0, 0.6, 0.701961, 0.364706)

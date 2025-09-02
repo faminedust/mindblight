@@ -1,0 +1,47 @@
+[gd_scene load_steps=7 format=3 uid="uid://11a6jhh1na18"]
+
+[ext_resource type="Script" uid="uid://d0sht6j2ki05p" path="res://player/physics.gd" id="1_oul6g"]
+[ext_resource type="Shader" uid="uid://bw31hul5tlhmc" path="res://materials/wireframe.gdshader" id="2_rkbax"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rkbax"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_g1dw6"]
+render_priority = 0
+shader = ExtResource("2_rkbax")
+shader_parameter/modelColor = Color(0, 0, 0, 1)
+shader_parameter/wireframeColor = Color(0.596078, 0.364706, 1, 1)
+shader_parameter/width = 1.0
+shader_parameter/modelOpacity = 0.0
+shader_parameter/filtered = false
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_g1dw6"]
+material = SubResource("ShaderMaterial_g1dw6")
+radial_segments = 16
+rings = 2
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_rkbax"]
+
+[node name="PLAYER" type="Node3D"]
+
+[node name="PHYSICS HANDLER" type="CharacterBody3D" parent="."]
+script = ExtResource("1_oul6g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PHYSICS HANDLER"]
+shape = SubResource("CapsuleShape3D_rkbax")
+debug_color = Color(0, 0.6, 0.701961, 0.678431)
+
+[node name="CAMRIG" type="Node3D" parent="PHYSICS HANDLER"]
+
+[node name="PLAYER_CAMERA" type="Camera3D" parent="PHYSICS HANDLER/CAMRIG"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+
+[node name="WORLD_MODEL" type="Node3D" parent="PHYSICS HANDLER/CAMRIG"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PHYSICS HANDLER/CAMRIG/WORLD_MODEL"]
+mesh = SubResource("CapsuleMesh_g1dw6")
+
+[node name="PLAYER_MODEL" type="Node3D" parent="PHYSICS HANDLER/CAMRIG"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PHYSICS HANDLER/CAMRIG/PLAYER_MODEL"]
+visible = false
+mesh = SubResource("CapsuleMesh_rkbax")
