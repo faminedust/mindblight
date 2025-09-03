@@ -1,2 +1,6 @@
 # mindblight
-The first game
+The first game.
+
+Welcome to the world of famine\dust
+
+WIP
