@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="Mindblight"
+config/tags=PackedStringArray("live")
 run/main_scene="uid://ckm7a3y8yw03s"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[dotnet]
+
+project/assembly_name="Mindblight"
 
 [input]
 
