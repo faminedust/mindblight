@@ -1,17 +1,9 @@
-; Engine configuration file.
-; It's best edited using the editor UI and not directly,
-; since the parameters that go here are not all obvious.
-;
-; Format:
-;   [section] ; section goes between []
-;   param=value ; assign values to parameters
-
 config_version=5
 
 [application]
 
-config/name="Mindblight"
-config/tags=PackedStringArray("live")
+config/name="(old-1) Mindblight"
+config/tags=PackedStringArray("deprecated")
 run/main_scene="uid://ckm7a3y8yw03s"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
