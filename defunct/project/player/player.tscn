@@ -43,5 +43,4 @@ mesh = SubResource("CapsuleMesh_g1dw6")
 [node name="PLAYER_MODEL" type="Node3D" parent="PHYSICS HANDLER/CAMRIG"]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="PHYSICS HANDLER/CAMRIG/PLAYER_MODEL"]
-visible = false
 mesh = SubResource("CapsuleMesh_rkbax")
